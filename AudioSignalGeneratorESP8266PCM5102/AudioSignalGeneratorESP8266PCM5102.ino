@@ -12,8 +12,8 @@
 #include "I2SHandler.h"
 
 // create the DDS signal generator
-uint32_t sampleRate = 44100;
-float frequency = 2000.0;
+const uint32_t sampleRate = 44100;
+const float frequency = 2000.0;
 const uint16_t sineTableSize = 1024;
 ESP8266DDSGenerator sineGen(sampleRate, frequency, sineTableSize);
 
@@ -38,13 +38,12 @@ void loop()
   int16_t signalSample_R;
 
   uint8_t state=0;
-  for (int i=0; i<10*sampleRate;i++) 
+  for (int i=0; i<sampleRate;i++) 
   { 
     signalSample_f = sineGen.getNextSample();
     signalSample_L = (int16_t) (16383 * (signalSample_f+1.0));  // note the offset to get positive values
     signalSample_R = signalSample_L;
     i2sHandler.write2I2SBufferLR(signalSample_L, signalSample_R);
-    if ((i % 10000) == 0)
-      yield(); // without this get WDT resets
   }
+  yield(); // without this get WDT resets
 }
