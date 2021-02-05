@@ -10,7 +10,6 @@
 
 I2SHandler::I2SHandler(uint32_t initSampleRate) : m_sampleRate(initSampleRate)
 {
-  
 }
 
 void I2SHandler::setup()
@@ -50,7 +49,8 @@ void I2SHandler::setup()
   //set sample rates of i2s to a given sample rate
   i2s_set_sample_rates((i2s_port_t)i2s_num, sampleRate);
   */
-  
+  pinMode(3, OUTPUT); // Override default Serial initiation
+
   i2s_begin();
   i2s_set_rate(m_sampleRate);
 }
