@@ -4,13 +4,16 @@
    History: 5th Feb. 2021, creation
 
 */
+#pragma once
+
 #include <Arduino.h>
 
-class ESP8266DDSSignalGenerator
+class ESP8266DDSGenerator
 {
 public:
-    ESP8266DDSSignalGenerator(float initSampleRate, float initFrequency, uint16_t initSineTableSize);
-    uint32_t getNextSample();
+    ESP8266DDSGenerator(float initSampleRate, float initFrequency, uint16_t initSineTableSize);
+    void setup();
+    float getNextSample();
 
 private:
      void createSineTable();
@@ -23,5 +26,5 @@ private:
     float m_phase;
     uint16_t m_tableIndex;
     uint16_t m_sineTableSize;
-    float m_sineTable[];
+    float *m_sineTable;
 };

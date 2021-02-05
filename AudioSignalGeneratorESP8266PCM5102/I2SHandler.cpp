@@ -6,7 +6,7 @@
  */
 #include "I2SHandler.h"
 
-#define write_sample(sample) while (i2s_write_sample_nb(sample)==0)
+// #define write_sample(sample) while (i2s_write_sample_nb(sample)==0)
 
 I2SHandler::I2SHandler(uint32_t initSampleRate) : m_sampleRate(initSampleRate)
 {
@@ -50,12 +50,20 @@ void I2SHandler::setup()
   i2s_set_sample_rates((i2s_port_t)i2s_num, sampleRate);
   */
   pinMode(3, OUTPUT); // Override default Serial initiation
-
+  digitalWrite(3,0); // Set pin low
   i2s_begin();
   i2s_set_rate(m_sampleRate);
 }
 
+void I2SHandler::write2I2SBufferLR(int16_t left, int16_t right)
+{
+  int sample = right & 0xFFFF;
+  sample = sample << 16;
+  sample |= left & 0xFFFF;
+  while (i2s_write_sample_nb(sample)==0);
+}
+
 void I2SHandler::write2I2SBuffer(uint32_t sample)
 {
-  write_sample(sample);
+  while (i2s_write_sample_nb(sample)==0);
 }
