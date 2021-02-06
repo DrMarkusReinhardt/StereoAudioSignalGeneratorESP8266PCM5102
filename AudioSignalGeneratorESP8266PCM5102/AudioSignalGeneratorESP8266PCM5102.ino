@@ -6,7 +6,7 @@
  * History: 3rd Feb. 2021, creation
  *          5th Feb. 2021, dual channel processing created
  *          
- * Author: Dr. Markus Reinhardt, 
+ * Author: Dr. Markus Reinhardt
  * 
  */
 #include <Arduino.h>
