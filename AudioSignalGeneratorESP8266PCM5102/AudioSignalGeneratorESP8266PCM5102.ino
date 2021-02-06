@@ -39,7 +39,6 @@ U8G2_SH1106_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);
 void setup() 
 {  
   Serial.begin(115200);
-  char stringBuffer[20];
 
   // setup the DDS sine generator
   sineGen.setup();
@@ -47,46 +46,50 @@ void setup()
   // setup the I2S handler
   i2sHandler.setup();
 
-  // show the left channel frequency value
-  u8g2.begin();
-  u8g2.clearBuffer();          // clear the internal memory
-  u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
-  u8g2.setDrawColor(1);
-  String frequencyLeftStr = String(frequencyLeft,1); 
-  u8g2.drawStr(0,8,"Frequency");
-  u8g2.drawStr(0,24,"Left Chan.:");
-  frequencyLeftStr.toCharArray(stringBuffer,10);
-  u8g2.drawStr(0,40,stringBuffer);
-  u8g2.drawStr(36,40,"Hz");
-
-  // line between the display sections
-  u8g2.drawVLine(64,0,64);
-    
-  // show the right channel frequency value
-  String frequencyRightStr = String(frequencyRight,1); 
-  u8g2.drawStr(68,8,"Frequency");
-  u8g2.drawStr(68,24,"Right Chan.: ");
-  frequencyRightStr.toCharArray(stringBuffer,10);
-  u8g2.drawStr(68,40,stringBuffer);
-  u8g2.drawStr(102,40,"Hz");
-
-  
-  /*
-  u8g2.setFont(u8g2_font_fub20_tf);
-  u8g2.setDrawColor(2);
-  u8g2.drawStr(0,60,"Hi Markus");
-  u8g2.setDrawColor(3);
-  u8g2.drawLine(0, 0, 127, 63);
-  u8g2.drawLine(0,63,127,0);
-  u8g2.drawEllipse(32,32,10,20);
-  */
-  u8g2.sendBuffer();          // transfer internal memory to the display
-  delay(1000); 
+  // start the display driver
+  displaySetup();
   
   delay(1000);
   Serial.println("");
   Serial.println("Setup done");
 }
+
+void displaySetup()
+{
+  char stringBuffer[20];
+
+  u8g2.begin();
+  u8g2.clearBuffer();          // clear the internal memory
+  u8g2.setFont(u8g2_font_ncenB08_tr); // choose a suitable font
+  u8g2.setDrawColor(1);
+
+  // head line
+  u8g2.drawStr(0,8,"Dual Chan. Signal Gen.");
+  u8g2.drawHLine(0,10,128);
+  
+  // show the left channel frequency value
+  String frequencyLeftStr = String(frequencyLeft,1); 
+  u8g2.drawStr(0,24,"Frequency");
+  u8g2.drawStr(0,40,"Left Chan.");
+  frequencyLeftStr.toCharArray(stringBuffer,10);
+  u8g2.drawStr(0,56,stringBuffer);
+  u8g2.drawStr(36,56,"Hz");
+
+  // line between the display sections
+  u8g2.drawVLine(61,10,64);
+    
+  // show the right channel frequency value
+  String frequencyRightStr = String(frequencyRight,1); 
+  u8g2.drawStr(65,24,"Frequency");
+  u8g2.drawStr(65,40,"Right Chan.");
+  frequencyRightStr.toCharArray(stringBuffer,10);
+  u8g2.drawStr(65,56,stringBuffer);
+  u8g2.drawStr(102,56,"Hz");
+
+  u8g2.sendBuffer();          // transfer internal memory to the display
+
+}
+
 
 void loop() 
 {
