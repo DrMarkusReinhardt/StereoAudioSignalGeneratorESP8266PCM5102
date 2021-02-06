@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name nodemcu)(type Legacy)(uri ${KIPRJMOD}/nodemcu.lib)(options "")(descr ""))
+)
