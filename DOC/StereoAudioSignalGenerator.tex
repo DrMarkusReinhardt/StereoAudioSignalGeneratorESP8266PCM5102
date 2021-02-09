@@ -95,8 +95,9 @@
 	
 	\newpage
 	\pagestyle{scrheadings}
-	
-\section{Block diagram}                         
+
+\section{Highlevel description}
+\subsection{Block diagram}                         
 The block diagram (equal to the schematics) of the \textbf{Stereo Audio Signal Generator} is shown in figure \ref{fig:toplevelfunctionalblock}:
 \begin{figure}[tbph]
 	\centering
@@ -106,6 +107,16 @@ The block diagram (equal to the schematics) of the \textbf{Stereo Audio Signal G
 \end{figure}
 The device consists of a NodeMCU module (V0.9) feeding a DAC module with a DAC of type PCM5102 via the I2S interface, a 1.3" OLED display fed from the controller via the I2C interface and a power supply with an external SMPS module connected to the
 5V voltage regulator of type LM7805.
+\newpage
+
+\subsection{Generated signals} 
+The generated signals of the \textbf{Stereo Audio Signal Generator} displayed on an oscilloscope are shown in figure \ref{fig:signalview}:
+\begin{figure}[tbph]
+	\centering
+	\includegraphics[width=\linewidth]{AudioSignalGeneratorOscilloscopeWaveforms.jpeg}
+	\caption[Stereo Audio Signal Generator: Generated signals]{Stereo Audio Signal Generator: Generated signals on the oscilloscope}
+	\label{fig:signalview}
+\end{figure}
 \newpage
 
 \section{Hardware description}
