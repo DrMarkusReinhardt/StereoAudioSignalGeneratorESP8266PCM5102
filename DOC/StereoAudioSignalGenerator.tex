@@ -154,9 +154,14 @@ power supply regulator is of type LM7805. Two capacitors at the input and output
 \newpage
 
 \section{Software description}
-The software is realized via the Arduino IDE and environment. The sketch is named AudioSignalGeneratorESP8266PCM5102.ino.
+The software is realized via the Arduino IDE and Arduino environment. The sketch is named AudioSignalGeneratorESP8266PCM5102.ino.
+
+\subsection{Existing functionality}
 The software consists mainly of two parts. The first part realizes the generation of I2S signals for stereo signals, the second part realizes the control of the display. Stereo signal generation is implemented with separate C++ classes for the signal generation itself (files ESP8266DDSGenerator.h / ESP8266DDSGenerator.cpp) and for the I2S interface handling (files IS2Handler.h / IS2Handler.cpp). The display handling is based on the U8G2 library and the routine displaySetup() called from the setup() routine of the main Arduino sketch.
 In the current version the software creates the signals with a sample rate of 48kHz and each sample for the left and right channel is 16bit wide.
 
+\subsection{Planned software extensions}
+A webserver shall be implemented with the NodeMCU module such that the signal generation can be parameterized via WLAN
+and a browser.
 
 \end{document}
