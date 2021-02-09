@@ -1,0 +1,36 @@
+# Ignore list for KiCAD Projects
+# Temporary files
+*.000
+*.bak
+*.bck
+*.kicad_pcb-bak
+*.sch-bak
+*~
+_autosave-*
+*.tmp
+*-save.pro
+*-save.kicad_pcb
+fp-info-cache
+# Netlist files (exported from Eeschema)
+*.net
+# Autorouter files (exported from Pcbnew)
+*.dsn
+*.ses
+*.lib — containing the symbol description, pins and graphical information i.e. shape, size or filled color.
+*.dcm — these the library documentations for each symbol
+*.pretty — Footprint library folders. The folder itself is the library.
+*.kicad_mod — Footprint files, containing one footprint description each.
+
+
+# for simulations
+
+
+# for LaTeX based documentation
+*.aux
+*.dvi
+*.lof
+*.log
+*.synctex.gz
+*.toc
+*.png
+*.pdf
